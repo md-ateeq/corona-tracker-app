@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import styles from './App.module.css';
+
+// import Chart from './components/Chart/Chart';
+// import Cards from './components/Cards/Cards';
+// import CountryPicker from './components/CountryPicker/CountryPicker';
+
+//instead of importing as above use below syntax and export them in index file
+
+import { Cards, Chart, CountryPicker } from './components'
+import { fetchData, fetchDailyData } from './api'
+
+class App extends React.Component {
+
+	state={
+		data: {}
+	}
+
+	async componentDidMount(){
+		const fetchedData = await fetchData();
+		fetchDailyData()
+		this.setState({ data: fetchedData });
+	}
+    render(){
+			const { data } = this.state;
+        return(
+            <div className={styles.container}>
+							<Cards data={data}/>
+							<CountryPicker />
+							<Chart />
+            </div>
+        )
+    }
 }
 
 export default App;
