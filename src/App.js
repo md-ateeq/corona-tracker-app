@@ -8,8 +8,9 @@ import styles from './App.module.css';
 
 //instead of importing as above use below syntax and export them in index file
 
-import { Cards, Chart, CountryPicker } from './components'
-import { fetchData, fetchDailyData } from './api'
+import { Cards, Chart, CountryPicker } from './components';
+import { fetchData, fetchDailyData } from './api';
+import covidImage from './images/covid_19.jpg';
 
 class App extends React.Component {
 
@@ -19,26 +20,28 @@ class App extends React.Component {
 	}
 
 	async componentDidMount(){
+		document.title = "Covid-19 Tracker";
 		const fetchedData = await fetchData();
 		fetchDailyData()
 		this.setState({ data: fetchedData });
 	}
 
 	handleCountryChange = async (country) => {
-		// console.log(country);
-		// this.setState({
-		// 	country: country
-		// })
-		fetchData(country);
+		const data = await fetchData(country);
+		this.setState({
+			data,
+			country
+		})
 	}
 
     render(){
-			const { data } = this.state;
+			const { data, country } = this.state;
         return(
             <div className={styles.container}>
+				<img className={styles.image} src={covidImage} alt="Covid 19" />
 							<Cards data={data}/>
 							<CountryPicker handleCountryChange={this.handleCountryChange} />
-							<Chart />
+							<Chart data={data}  country={country}/>
             </div>
         )
     }
