@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(250,250,250);
+    background-color: rgb(241, 241, 241);
 }
 
 .container{
@@ -9,9 +9,25 @@ body {
     flex-direction: column;
 }
 
+.titleContainer {
+    display: flex;
+    background-color: #820000;
+    width: 100%;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleText {
+    color: #f0f0f0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .image {
-    width: 370px;
+    width: 250px;
+    height: 80px;
     border-radius: 100px;
+    margin-right: 4px;
 }
 
 @media (max-width: 770px) {
@@ -20,7 +36,6 @@ body {
     }
 
     .image {
-        width: 100%;
-        border-radius: 4px;
+        width: auto;
     }
 }

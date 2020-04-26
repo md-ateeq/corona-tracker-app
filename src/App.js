@@ -38,10 +38,12 @@ class App extends React.Component {
 			const { data, country } = this.state;
         return(
             <div className={styles.container}>
-				<img className={styles.image} src={covidImage} alt="Covid 19" />
-							<Cards data={data}/>
-							<CountryPicker handleCountryChange={this.handleCountryChange} />
-							<Chart data={data}  country={country}/>
+				<div className={styles.titleContainer}>
+					<h2 className={styles.titleText}><span style={{display: 'flex', alignItems: 'center'}}><img className={styles.image} src={covidImage} alt="Covid 19" />Tracker</span></h2>
+				</div>
+				<Cards data={data}/>
+				<CountryPicker handleCountryChange={this.handleCountryChange} />
+				<Chart data={data}  country={country}/>
             </div>
         )
     }
