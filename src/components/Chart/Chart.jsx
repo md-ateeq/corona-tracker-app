@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchDailyData } from "../../api";
-import { Line, Doughnut } from "react-chartjs-2";
+import { Line, Doughnut, Bar, Pie } from "react-chartjs-2";
 
 import styles from "./Chart.module.css";
 
@@ -38,8 +38,8 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
     />
   ) : null;
 
-  const doughNut = confirmed ? (
-    <Doughnut
+  const barChart = confirmed ? (
+    <Bar
       data={{
         labels: ["Infected", "Recovered", "Deaths"],
         datasets: [
@@ -62,7 +62,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
   ) : null;
 
   return <div className={styles.container}>
-      {country ? doughNut : lineChart}
+      {country ? barChart : lineChart}
       </div>;
 };
 
